@@ -41,8 +41,11 @@ class MyTaskController extends Controller
     public function addTask(Request $request)
     {
         $data = new Task();
-        $data->title= $request->title;
-        $data->done=$request->done;
+        $data->title= $request->input('title');
+        $data->done=$request->input('done');
+
+        // return $request;
+
         $data->save();
 
         $response = [
@@ -54,16 +57,17 @@ class MyTaskController extends Controller
     }
 
     public function deleteTask($id)
-    {
+    {   
         $data= Task::where('id', $id)->first();
         $data->delete();
 
         $response = [
-            'code' => 204,
+            'code' => 200,
             'status' => 'success',
-            'data' => [],
+            'data' => [$data],
             'message' => 'Resource deleted'
             ];
+            
         return response()->json($response, $response['code']);
     }
 
@@ -77,7 +81,7 @@ class MyTaskController extends Controller
             'status' => 'succcess',
             'data' => $data
             ];
-            return response()->json($response, $response['code']);
+        return response()->json($response, $response['code']);
     }
 
     public function uncompleteTask($id)

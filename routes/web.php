@@ -24,7 +24,7 @@ $router->group(['prefix'=>'api/user'], function() use ($router){
     $router->put('',['uses' => 'UserController@editProfile']);
 });
 
-$router->group(['prefix'=>'api/task'],function() use ($router){
+$router->group(['prefix'=>'api/task'], function() use ($router){
     $router->get('list', ['uses' => 'MyTaskController@getListTask']);
     $router->get('{id}', ['uses' => 'MyTaskController@getDetailtask']);
     $router->post('',['uses' => 'MyTaskController@addTask']);

@@ -66,6 +66,10 @@ $app->routeMiddleware([
     'test' => App\Http\Middleware\Yasya::class,
 ]);
 
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
